@@ -14,13 +14,4 @@ public class apmAggregation {
     private double average;
     private double median;
 
-
-    public void update(double value) {
-
-        min = Math.min(min, value);
-        max = Math.max(max, value);
-
-
-
-    }
 }

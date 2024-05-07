@@ -1,0 +1,9 @@
+{"timestamp":"2024-03-01T10:05:00Z","metric":"cpu_usage_percent","host":"appserver3","value":60}
+{"timestamp":"2024-03-01T10:05:15Z","metric":"memory_usage_percent","host":"appserver3","value":70}
+{"timestamp":"2024-03-01T10:05:15Z","metric":"memory_usage_percent","host":"appserver3","value":100}
+{"timestamp":"2024-03-01T10:05:30Z","metric":"disk_usage_percent","host":"appserver3","value":75}
+{"timestamp":"2024-03-01T10:05:45Z","metric":"network_bytes_in","host":"appserver3","value":123321}
+{"timestamp":"2024-03-01T10:06:00Z","metric":"network_bytes_out","host":"appserver3","value":654321}
+{"timestamp":"2024-03-01T10:06:15Z","metric":"cpu_usage_percent","host":"appserver4","value":55}
+{"timestamp":"2024-03-01T10:06:15Z","metric":"cpu_usage_percent","host":"appserver4","value":56}
+{"timestamp":"2024-03-01T10:06:30Z","metric":"memory_usage_percent","host":"appserver4","value":82}

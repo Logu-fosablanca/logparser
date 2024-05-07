@@ -1,58 +1,49 @@
 package com.logparser;
 
-import com.logparser.jsonwriter.JsonWriter;
-import com.logparser.parser.LogEntry;
-import com.logparser.parser.LogParser;
 
+import com.logparser.logs.apmLog;
+import com.logparser.logs.applicationLog;
+import com.logparser.logs.requestLog;
+import com.logparser.parser.LogParser;
+import com.logparser.visitors.logVisitor;
+import com.logparser.visitors.logVisitorImpl;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
 
 public class App {
     public static void main(String[] args) {
-        String filename ;
-//        if (args[0]==null){
-            filename="Inputs.txt";
-//        }
-        try {
-            LogParser logParser = new LogParser();
-            List<LogEntry> logEntries = logParser.parseLogFile(filename);
-
-            System.out.println(logEntries.toString());
-
-            List<LogEntry> apmLogs = filterLogsByType(logEntries, "APM");
-            LogAggregatorImpl apmAggregator = new LogAggregatorImpl(apmLogs);
-            apmAggregator.aggregate(apmLogs);
-            Map<String, Object> apmData = apmAggregator.toJson();
-            JsonWriter.writeToJsonFile("apm.json", apmData);
-
-            List<LogEntry> applicationLogs = filterLogsByType(logEntries, "Application");
-            LogAggregatorImpl applicationAggregator = new LogAggregatorImpl(applicationLogs);
-            applicationAggregator.aggregate(applicationLogs);
-            Map<String, Object> applicationData = applicationAggregator.toJson();
-            JsonWriter.writeToJsonFile("application.json", applicationData);
-
-            List<LogEntry> requestLogs = filterLogsByType(logEntries, "Request");
-            LogAggregatorImpl requestAggregator = new LogAggregatorImpl(requestLogs);
-            requestAggregator.aggregate(requestLogs);
-            Map<String, Object> requestData = requestAggregator.toJson();
-            JsonWriter.writeToJsonFile("request.json", requestData);
-
-            System.out.println("JSON files created successfully.");
-        } catch (IOException e) {
-            System.err.println("Error reading or writing log file: " + e.getMessage());
-        }
-    }
-
-    static List<LogEntry> filterLogsByType(List<LogEntry> logEntries, String type) {
-        List<LogEntry> filteredLogs = new ArrayList<>();
-        for (LogEntry log : logEntries) {
-            if (log.getType().equals(type)) {
-                filteredLogs.add(log);
+        String filename="Inputs.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            // Read each line from the log file
+            while ((line = br.readLine()) != null) {
+                logVisitor visitor = new logVisitorImpl();
+                String logType= classifyAndProcessLogEntry(line);
+                if (logType=="APM"){
+                    apmLog logEntry = new apmLog(line);
+                    visitor.visit(logEntry);
+                } else if (logType=="Application") {
+                    applicationLog logEntry = new applicationLog(line);
+                    visitor.visit(logEntry);
+                } else if (logType=="Request") {
+                    requestLog logEntry = new requestLog(line);
+                    visitor.visit(logEntry);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return filteredLogs;
     }
+
+    private static String classifyAndProcessLogEntry(String line) {
+        String logType= LogParser.parseLogLine(line);
+        return logType;
+
+
+    }
+
 }
 
