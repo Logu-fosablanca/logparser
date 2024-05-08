@@ -44,8 +44,8 @@ public class App {
 
         /**
          * Parse the logs based on their type
-         * for the apm aggregators just the count would be enought
-         * for the request log aggregators the  would be the url will be mapped to the responsetimes in percentiles and status codes after the mapping
+         * for the apm aggregators just the count would be enough
+         * for the request log aggregators the would be the url will be mapped to the responsetimes in percentiles and status codes after the mapping
          * for the application log aggregators the count would be the meteric would be mapped with minimum , medium , max and avg values
          */
         applicationAggregation analysedApplicationLog = new applicationAggregation();

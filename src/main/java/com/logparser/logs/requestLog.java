@@ -24,7 +24,6 @@ public class requestLog implements log {
     public requestLog(String line){
         String[] parts = line.split("\\s+");
 
-        // Iterate through the parts to extract information
         for (String part : parts) {
             // Split each part by '=' to separate key and value
             String[] keyValue = part.split("=");
@@ -43,13 +42,12 @@ public class requestLog implements log {
                         this.requestUrl = keyValue[1];
                         break;
                     case "response_status":
-                        this.responseStatusCode = Integer.parseInt(keyValue[1]); // Parse value as integer
+                        this.responseStatusCode = Integer.parseInt(keyValue[1]);
                         break;
                     case "response_time_ms":
-                        this.responseTimeMs = Integer.parseInt(keyValue[1]); // Parse value as integer
+                        this.responseTimeMs = Integer.parseInt(keyValue[1]);
                         break;
                     default:
-                        // Handle unknown key or ignore
                         break;
                 }
             }
@@ -61,7 +59,7 @@ public class requestLog implements log {
         return gson.toJson(this);
     }
 
-    // Override toString() method to return JSON representation
+
     @Override
     public String toString() {
         return toJson();

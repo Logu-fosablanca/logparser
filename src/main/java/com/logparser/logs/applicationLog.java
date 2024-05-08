@@ -9,7 +9,7 @@ public class applicationLog implements log {
     private String timestamp;
     private String type;
     private String level;
-    private String message; // Specific to Application logs
+    private String message;
 
     public applicationLog(String timestamp, String type, String level, String message) {
         this.timestamp = timestamp;

@@ -27,15 +27,9 @@ public class apmLog implements log {
 
     public apmLog(String line){
         String[] parts = line.split("\\s+");
-
-        // Iterate through the parts to extract information
         for (String part : parts) {
-            // Split each part by '=' to separate key and value
             String[] keyValue = part.split("=");
-
-            // Check if keyValue length is 2 to ensure it's in key=value format
             if (keyValue.length == 2) {
-                // Extract information based on the key
                 switch (keyValue[0]) {
                     case "timestamp":
                         this.timestamp = keyValue[1];
@@ -46,14 +40,13 @@ public class apmLog implements log {
                     case "host":
                         this.host = keyValue[1];
                         break;
-                    case "webmount": // Assuming "webmount" is the correct variable name
+                    case "webmount":
                         this.webmount = keyValue[1];
                         break;
                     case "value":
-                        this.value = Integer.parseInt(keyValue[1]); // Parse value as integer
+                        this.value = Integer.parseInt(keyValue[1]);
                         break;
                     default:
-                        // Handle unknown key or ignore
                         break;
                 }
             }
