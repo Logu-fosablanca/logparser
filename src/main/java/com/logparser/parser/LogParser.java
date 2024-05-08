@@ -1,5 +1,9 @@
 package com.logparser.parser;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,10 +39,27 @@ public class LogParser {
         }
     }
 
-    public static void dumpLogToFile(Object log, String dumpfile) {
+    public static void writeOutputToFile(JsonObject output, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".json"))) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(output, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        deleteLogFile(fileName+"_log.json");
+    }
 
-
-
+    private static void deleteLogFile(String fileName) {
+        File file = new File(fileName);
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("File deleted successfully: " + fileName);
+            } else {
+                System.out.println("Failed to delete the file: " + fileName);
+            }
+        } else {
+            System.out.println("File does not exist: " + fileName);
+        }
     }
 
 }

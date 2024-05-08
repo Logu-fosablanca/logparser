@@ -31,7 +31,7 @@ public class logVisitorImpl implements logVisitor {
         }
     }
 
-    // Method to visit Application logs
+
     @Override
     public void visit(applicationLog logEntry) {
         /**
@@ -46,7 +46,6 @@ public class logVisitorImpl implements logVisitor {
 
     }
 
-    // Method to visit Request logs
     @Override
     public void visit(requestLog logEntry) {
 
