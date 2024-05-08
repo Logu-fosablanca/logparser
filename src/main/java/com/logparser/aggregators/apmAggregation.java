@@ -35,13 +35,12 @@ public class apmAggregation implements processLog {
                  String metric = jsonObject.get("metric").getAsString();
                  Integer value= jsonObject.get("value").getAsInt();
 
-                 if(metricAnalysis== null){
+                 if(metricAnalysis.isEmpty()){
                      Map<String, JsonArray> log = new HashMap<>();
                      JsonArray newMetricValues = new JsonArray();
                      newMetricValues.add(value);
                      log.put(metric, newMetricValues);
                      metricAnalysis.add(log);
-//                     System.out.print(metricAnalysis);
                      System.out.print(value);
 
                  } else {

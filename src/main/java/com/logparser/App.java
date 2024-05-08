@@ -48,14 +48,14 @@ public class App {
          * for the request log aggregators the  would be the url will be mapped to the responsetimes in percentiles and status codes after the mapping
          * for the application log aggregators the count would be the meteric would be mapped with minimum , medium , max and avg values
          */
-//        applicationAggregation analysedApplicationLog = new applicationAggregation();
-//        JsonObject levelCount = analysedApplicationLog.analysedLog("application_log");
-////        System.out.print(levelCount);
-//        LogParser.writeOutputToFile(levelCount,"application");
+        applicationAggregation analysedApplicationLog = new applicationAggregation();
+        JsonObject levelCount = analysedApplicationLog.analysedLog("application_log");
+        System.out.print(levelCount);
+        LogParser.writeOutputToFile(levelCount,"application");
 
         apmAggregation analysedApmLog= new apmAggregation();
         JsonObject metricStats = analysedApmLog.analysedLog("apm_log");
-//        System.out.print(metricStats);
+        System.out.print(metricStats);
         LogParser.writeOutputToFile(metricStats,"apm");
 
 
