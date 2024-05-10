@@ -17,25 +17,24 @@ import com.logparser.visitors.logVisitorImpl;
 
 public class App {
     public static void main(String[] args) {
-        if (args.length != 1) {
-            System.out.println("Usage: java com.logparser.App <filename>");
+        if (args.length != 2 || !args[0].equals("--file")) {
+            System.out.println("Usage: java com.logparser.App --file <filename>");
             return;
         }
 
-        String filename = args[0];
+        String filename = args[1];
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
-            // Read each line from the log file
             while ((line = br.readLine()) != null) {
                 logVisitor visitor = new logVisitorImpl();
                 String logType = classifyAndProcessLogEntry(line);
-                if (logType.equals("APM")) { // Use equals() for string comparison
+                if (logType.equals("APM")) {
                     apmLog logEntry = new apmLog(line);
                     logEntry.accept(visitor);
-                } else if (logType.equals("Application")) { // Use equals() for string comparison
+                } else if (logType.equals("Application")) {
                     applicationLog logEntry = new applicationLog(line);
                     logEntry.accept(visitor);
-                } else if (logType.equals("Request")) { // Use equals() for string comparison
+                } else if (logType.equals("Request")) {
                     requestLog logEntry = new requestLog(line);
                     logEntry.accept(visitor);
                 }
