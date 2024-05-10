@@ -7,7 +7,7 @@ import java.io.IOException;
 import com.google.gson.JsonObject;
 import com.logparser.aggregators.apmAggregation;
 import com.logparser.aggregators.applicationAggregation;
-// import com.logparser.aggregators.requestAggregation; // Import request aggregation
+import com.logparser.aggregators.requestAggregation;
 import com.logparser.logs.apmLog;
 import com.logparser.logs.applicationLog;
 import com.logparser.logs.requestLog;
@@ -17,7 +17,12 @@ import com.logparser.visitors.logVisitorImpl;
 
 public class App {
     public static void main(String[] args) {
-        String filename = "Inputs.txt";
+        if (args.length != 1) {
+            System.out.println("Usage: java com.logparser.App <filename>");
+            return;
+        }
+
+        String filename = args[0];
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             // Read each line from the log file
@@ -50,9 +55,9 @@ public class App {
         LogParser.writeOutputToFile(apmStats, "apm");
 
         // Request Aggregation
-        // requestAggregation analysedRequestLog = new requestAggregation();
-        // JsonObject requestStats = analysedRequestLog.analysedLog("request_log");
-        // LogParser.writeOutputToFile(requestStats, "request");
+        requestAggregation analysedRequestLog = new requestAggregation();
+        JsonObject requestStats = analysedRequestLog.analysedLog("request_log");
+        LogParser.writeOutputToFile(requestStats, "request");
     }
 
     private static String classifyAndProcessLogEntry(String line) {
