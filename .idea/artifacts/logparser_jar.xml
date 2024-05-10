@@ -2,13 +2,9 @@
   <artifact type="jar" build-on-make="true" name="logparser:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/logparser_jar</output-path>
     <root id="archive" name="logparser.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META_INF/MANIFEST.mf" output-file-name="MANIFEST.MF" />
-      </element>
       <element id="module-output" name="logparser" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20231013/json-20231013.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/info/picocli/picocli/4.7.6/picocli-4.7.6.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

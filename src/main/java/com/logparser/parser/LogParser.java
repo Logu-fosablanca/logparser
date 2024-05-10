@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class LogParser {
     public static String parseLogLine(String line) {
+
         Map<String, String> keyValuePairs = new HashMap<>();
         String[] parts = line.split("\\s+");
 

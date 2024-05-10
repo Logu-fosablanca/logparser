@@ -23,11 +23,13 @@ public class App {
         }
 
         String filename = args[1];
+        System.out.print(filename);
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
                 logVisitor visitor = new logVisitorImpl();
                 String logType = classifyAndProcessLogEntry(line);
+
                 if (logType.equals("APM")) {
                     apmLog logEntry = new apmLog(line);
                     logEntry.accept(visitor);
