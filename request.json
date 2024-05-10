@@ -1,0 +1,82 @@
+{
+  "/api/backup/status": {
+    "response_times": {
+      "min": 10,
+      "max": 350,
+      "50_percentile": 100.0,
+      "90_percentile": 260.0,
+      "95_percentile": 350.0,
+      "99_percentile": 350.0
+    },
+    "status_codes": {
+      "2XX": 9,
+      "5XX": 1
+    }
+  },
+  "/api/save": {
+    "response_times": {
+      "min": 31,
+      "max": 300,
+      "50_percentile": 300.0,
+      "90_percentile": 300.0,
+      "95_percentile": 300.0,
+      "99_percentile": 300.0
+    },
+    "status_codes": {
+      "2XX": 7,
+      "4XX": 1
+    }
+  },
+  "/api/health": {
+    "response_times": {
+      "min": 120,
+      "max": 120,
+      "50_percentile": 120.0,
+      "90_percentile": 120.0,
+      "95_percentile": 120.0,
+      "99_percentile": 120.0
+    },
+    "status_codes": {
+      "2XX": 2
+    }
+  },
+  "/api/rebackup": {
+    "response_times": {
+      "min": 400,
+      "max": 400,
+      "50_percentile": 400.0,
+      "90_percentile": 400.0,
+      "95_percentile": 400.0,
+      "99_percentile": 400.0
+    },
+    "status_codes": {
+      "2XX": 2
+    }
+  },
+  "/api/update": {
+    "response_times": {
+      "min": 220,
+      "max": 220,
+      "50_percentile": 220.0,
+      "90_percentile": 220.0,
+      "95_percentile": 220.0,
+      "99_percentile": 220.0
+    },
+    "status_codes": {
+      "4XX": 1
+    }
+  },
+  "/config": {
+    "response_times": {
+      "min": 10,
+      "max": 10,
+      "50_percentile": 10.0,
+      "90_percentile": 10.0,
+      "95_percentile": 10.0,
+      "99_percentile": 10.0
+    },
+    "status_codes": {
+      "4XX": 1
+    }
+  }
+}
